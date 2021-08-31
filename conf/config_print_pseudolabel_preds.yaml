@@ -1,0 +1,38 @@
+device: "cuda:0"
+
+task2vec:
+  # Maximum number of samples in the dataset used to estimate the Fisher
+  max_samples: 10000
+  skip_layers: 0
+  method: variational
+  classifier_opts:
+    optimizer: adam
+    epochs: 2
+    learning_rate: 0.0004
+    weight_decay: 0.0001
+
+  method_opts:
+    beta: 1.0e-7
+    epochs: 2
+
+
+dataset:
+  name: cub_inat2018
+  task_id: 0
+  root: /data
+
+# Probe network to use
+model:
+  arch: resnet18
+  pretraining: imagenet
+
+loader:
+  batch_size: 100
+  num_workers: 6
+  balanced_sampling: true
+  num_samples: 10000
+
+hydra:
+  sweep:
+    dir: ./tmp
+    subdir: ${hydra.job.num}

@@ -1,0 +1,45 @@
+device: "cuda:0"
+
+task2vec:
+  # Maximum number of samples in the dataset used to estimate the Fisher
+  max_samples: 10000
+  skip_layers: 0
+
+  # Whether to put batch normalization in eval mode (true) or train mode (false) when computing the Fisher
+#  fix_batch_norm: true
+
+  classifier_opts:
+    optimizer: adam
+    epochs: 10
+    learning_rate: 0.0004
+    weight_decay: 0.0001
+
+dataset:
+  name: cub_inat2018
+  task_id: 0
+  root: /data
+  attribute: class
+
+# Probe network to use
+model:
+  arch: resnet18
+  pretraining: imagenet
+
+loader:
+  batch_size: 100
+  num_workers: 6
+  balanced_sampling: true
+  num_samples: 10000
+
+cars:
+  base_dir: /data/bw462/task2vec/experts/cars_class/dataset.name=cars,dataset.root=/data/
+  sub_dir_prefix: bw462,dataset.task_id={}/
+
+cub_inat:
+  base_dir: /data/bw462/task2vec/experts/
+
+hydra:
+  sweep:
+    dir: /data/bw462/task2vec/experts/${dataset.name}_${dataset.attribute}
+    subdir: ${hydra.job.override_dirname}
+
