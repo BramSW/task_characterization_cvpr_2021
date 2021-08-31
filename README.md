@@ -1,3 +1,7 @@
+# Note
+
+Currently only the code for PseudoTask is posted, a pull request for the Task Tangent Kernel aspects of our paper will be made in the coming weeks.
+
 # General Usage
 
 Most arguments are specified in the config files of `config/`, you can edit entries in these or pass paths as command line arguments to match to however your local machine is set up.
