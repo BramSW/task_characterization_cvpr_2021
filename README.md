@@ -1,6 +1,7 @@
 # Note
 
 Currently only the code for PseudoTask is posted, a pull request for the Task Tangent Kernel aspects of our paper will be made in the coming weeks.
+As this code is newly released, it's only been tested on a limited number of machines/environments. Please let us know of any difficulties you encounter while using it and we'll be happy to help!
 
 # General Usage
 
